@@ -21,6 +21,8 @@ import com.example.edl_backend.Models.erole;
 import com.example.edl_backend.Models.usermodel;
 import com.example.edl_backend.services.Adminservice;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/Admin")
 public class admincontroller {
@@ -29,8 +31,12 @@ public class admincontroller {
     private Adminservice adminser;
 
     @PostMapping("/AddUser")
-    public String adduser(@RequestBody usermodel user) {
-        adminser.adduser(user);
+    public String adduser(@RequestBody usermodel user, HttpSession session) {
+        usermodel usersession = (usermodel) session.getAttribute("user");
+
+        if (usersession.getRole().equals("ADMIN")) {
+            adminser.adduser(user);
+        }
         return "user has been added";
     }
 
@@ -53,6 +59,14 @@ public class admincontroller {
     public String test() {
 
         return "test of api";
+    }
+
+    @PostMapping("/viaFile")
+    public ResponseEntity<String> createUser(@RequestBody List<usermodel> users) {
+        // Process the list of users and perform necessary operations (e.g., saving to
+        // database)
+
+        return ResponseEntity.ok("Users created successfully");
     }
 
 }

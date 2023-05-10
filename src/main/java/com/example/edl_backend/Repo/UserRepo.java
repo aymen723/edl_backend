@@ -8,5 +8,6 @@ import com.example.edl_backend.Models.usermodel;
 
 @Repository
 public interface UserRepo extends MongoRepository<usermodel, ObjectId> {
+    usermodel findByUsernameAndPassword(String username, String password);
 
 }
