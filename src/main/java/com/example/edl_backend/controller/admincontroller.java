@@ -2,7 +2,6 @@ package com.example.edl_backend.controller;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -55,11 +54,10 @@ public class admincontroller {
     }
 
     @PatchMapping("/updateuser")
-    public void updateuser(@RequestBody usermodel user, HttpSession session) {
+    public void updateuser(@RequestParam String userId, @RequestBody usermodel updatedUser, HttpSession session) {
         usermodel usersession = (usermodel) session.getAttribute("user");
-
         if (usersession.getRole().equals("ADMIN")) {
-            adminser.updateuser(user);
+            adminser.updateuser(userId, updatedUser);
         }
     }
 
