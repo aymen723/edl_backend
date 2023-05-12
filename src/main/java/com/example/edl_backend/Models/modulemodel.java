@@ -1,5 +1,58 @@
 package com.example.edl_backend.Models;
 
+import java.util.ArrayList;
+
+import org.springframework.data.annotation.Id;
+
 public class modulemodel {
+
+    @Id
+    private String Id;
+
+    private String nom_module;
+    private Integer coeff;
+    private Integer credit;
+
+    public modulemodel(String id, String nom_module, Integer coeff, Integer credit) {
+        Id = id;
+        this.nom_module = nom_module;
+        this.coeff = coeff;
+        this.credit = credit;
+    }
+
+    public modulemodel() {
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getNom_module() {
+        return nom_module;
+    }
+
+    public void setNom_module(String nom_module) {
+        this.nom_module = nom_module;
+    }
+
+    public Integer getCoeff() {
+        return coeff;
+    }
+
+    public void setCoeff(Integer coeff) {
+        this.coeff = coeff;
+    }
+
+    public Integer getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Integer credit) {
+        this.credit = credit;
+    }
 
 }

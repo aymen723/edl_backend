@@ -27,16 +27,20 @@ public class usermodel {
 
     // private Date birthdate;
 
+    private String code;
+
     private Date birthdate;
+
+    private String specialite;
+
+    private String examan;
+
+    private Integer nbr_copies;
 
     private boolean state;
 
     // @DBRef
     private erole role;
-
-    public usermodel() {
-
-    }
 
     public String getId() {
         return id;
@@ -102,12 +106,44 @@ public class usermodel {
         this.phone = phone;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public Date getBirthdate() {
         return birthdate;
     }
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+
+    public String getExaman() {
+        return examan;
+    }
+
+    public void setExaman(String examan) {
+        this.examan = examan;
+    }
+
+    public Integer getNbr_copies() {
+        return nbr_copies;
+    }
+
+    public void setNbr_copies(Integer nbr_copies) {
+        this.nbr_copies = nbr_copies;
     }
 
     public boolean isState() {
@@ -127,7 +163,8 @@ public class usermodel {
     }
 
     public usermodel(String id, String fname, String lname, String arabicname, String username, String password,
-            String email, String phone, Date birthdate, boolean state, erole role) {
+            String email, String phone, String code, Date birthdate, String specialite, String examan,
+            Integer nbr_copies, boolean state, erole role) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -136,9 +173,17 @@ public class usermodel {
         this.password = password;
         this.email = email;
         this.phone = phone;
+        this.code = code;
         this.birthdate = birthdate;
+        this.specialite = specialite;
+        this.examan = examan;
+        this.nbr_copies = nbr_copies;
         this.state = state;
         this.role = role;
     }
 
+    public usermodel() {
+    }
+
+ 
 }

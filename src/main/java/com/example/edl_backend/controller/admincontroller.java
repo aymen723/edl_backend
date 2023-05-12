@@ -46,13 +46,21 @@ public class admincontroller {
     }
 
     @DeleteMapping("/deleteuser")
-    public void deleteByEmpId(@RequestParam String id) {
-        adminser.deleteuserbyid(id);
+    public void deleteByEmpId(@RequestParam String id, HttpSession session) {
+        usermodel usersession = (usermodel) session.getAttribute("user");
+
+        if (usersession.getRole().equals("ADMIN")) {
+            adminser.deleteuserbyid(id);
+        }
     }
 
     @PatchMapping("/updateuser")
-    public void updateuser(@RequestBody usermodel user) {
-        adminser.updateuser(user);
+    public void updateuser(@RequestBody usermodel user, HttpSession session) {
+        usermodel usersession = (usermodel) session.getAttribute("user");
+
+        if (usersession.getRole().equals("ADMIN")) {
+            adminser.updateuser(user);
+        }
     }
 
     @GetMapping("/")
@@ -63,8 +71,6 @@ public class admincontroller {
 
     @PostMapping("/viaFile")
     public ResponseEntity<String> createUser(@RequestBody List<usermodel> users) {
-        // Process the list of users and perform necessary operations (e.g., saving to
-        // database)
 
         return ResponseEntity.ok("Users created successfully");
     }
