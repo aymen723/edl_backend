@@ -2,7 +2,6 @@ package com.example.edl_backend.services;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,19 +24,13 @@ public class Adminservice {
 
     }
 
-    public void deleteuserbyentite(usermodel user) {
-        userrepo.delete(user);
-    }
-
     public void deleteuserbyid(String id) {
-        userrepo.deleteById(new ObjectId(id));
+        userrepo.deleteById(id);
 
     }
 
     public void updateuser(String userId, usermodel updatedUser) {
-        usermodel existingUser = userrepo.findById(new ObjectId(userId)).orElse(null);
-        // User existingUser = userRepository.findById(id).orElseThrow(() -> new
-        // RuntimeException("User not found"));
+        usermodel existingUser = userrepo.findById(userId).orElseThrow(IllegalArgumentException::new);
 
         if (existingUser != null) {
             // Update the fields you want to modify

@@ -2,10 +2,12 @@ package com.example.edl_backend.Models;
 
 import java.util.Date;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Users")
+@EntityScan
 public class usermodel {
 
     @Id

@@ -3,7 +3,9 @@ package com.example.edl_backend.Models;
 import java.util.ArrayList;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "examen")
 public class examenmodel {
 
     @Id
