@@ -36,6 +36,8 @@ public class Adminservice {
 
     public void updateuser(String userId, usermodel updatedUser) {
         usermodel existingUser = userrepo.findById(new ObjectId(userId)).orElse(null);
+        // User existingUser = userRepository.findById(id).orElseThrow(() -> new
+        // RuntimeException("User not found"));
 
         if (existingUser != null) {
             // Update the fields you want to modify

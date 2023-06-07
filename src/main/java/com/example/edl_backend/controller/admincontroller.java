@@ -73,4 +73,7 @@ public class admincontroller {
         return ResponseEntity.ok("Users created successfully");
     }
 
+
+    
+
 }
