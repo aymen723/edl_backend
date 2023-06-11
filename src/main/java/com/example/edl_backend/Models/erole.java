@@ -13,6 +13,8 @@ public enum erole {
     @JsonProperty("ENSEIGNANT")
     ENSEIGNANT,
     @JsonProperty("CANDIDAT")
-    CANDIDAT
+    CANDIDAT,
+    @JsonProperty("ETUDIANT")
+    ETUDIANT
 
 }

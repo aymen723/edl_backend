@@ -16,23 +16,23 @@ public class infoconcourmodel {
 
     private Date dete_fin;
 
+    private String lieu;
+
     private specialitemodel specialite;
 
     private List<String> idmodules;
 
     private boolean state;
 
-    public infoconcourmodel(String id, Date date_debut, Date dete_fin, specialitemodel specialite,
+    public infoconcourmodel(String id, Date date_debut, Date dete_fin, String lieu, specialitemodel specialite,
             List<String> idmodules, boolean state) {
         this.id = id;
         this.date_debut = date_debut;
         this.dete_fin = dete_fin;
+        this.lieu = lieu;
         this.specialite = specialite;
         this.idmodules = idmodules;
         this.state = state;
-    }
-
-    public infoconcourmodel() {
     }
 
     public String getId() {
@@ -57,6 +57,14 @@ public class infoconcourmodel {
 
     public void setDete_fin(Date dete_fin) {
         this.dete_fin = dete_fin;
+    }
+
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
     }
 
     public specialitemodel getSpecialite() {

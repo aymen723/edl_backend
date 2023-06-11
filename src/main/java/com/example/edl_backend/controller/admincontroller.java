@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.edl_backend.Models.erole;
+import com.example.edl_backend.Models.modulemodel;
 import com.example.edl_backend.Models.usermodel;
 import com.example.edl_backend.services.Adminservice;
 
@@ -56,7 +58,7 @@ public class admincontroller {
     }
 
     @DeleteMapping("/deleteuser")
-    public void deleteByEmpId(@RequestParam String id, HttpSession session) {
+    public void deleteuser(@RequestParam String id, HttpSession session) {
         try {
             usermodel usersession = (usermodel) session.getAttribute("user");
             if (usersession.getRole() == erole.ADMIN) {
@@ -68,12 +70,31 @@ public class admincontroller {
         }
     }
 
-    @PatchMapping("/updateuser")
-    public void updateuser(@RequestParam String userId, @RequestBody usermodel updatedUser) {
-        // usermodel usersession = (usermodel) session.getAttribute("user");
-        // if (usersession.getRole() == erole.ADMIN) {
-        adminser.updateuser(userId, updatedUser);
-        // }
+    // @PatchMapping("/updateuser")
+    // public void updateuser(@RequestParam String userId, @RequestBody usermodel
+    // updatedUser) {
+    // // usermodel usersession = (usermodel) session.getAttribute("user");
+    // // if (usersession.getRole() == erole.ADMIN) {
+    // adminser.updateuser(userId, updatedUser);
+    // // }
+    // }
+
+    @PutMapping("/updateuser")
+    public ResponseEntity<usermodel> updateuser(@RequestParam String Id,
+            @RequestBody usermodel updatedDocument, HttpSession session) {
+        usermodel modifiedDocument = new usermodel();
+        try {
+            usermodel usersession = (usermodel) session.getAttribute("user");
+            if (usersession.getRole() == erole.ADMIN) {
+                modifiedDocument = adminser.updateuser(Id, updatedDocument);
+            }
+
+            return ResponseEntity.ok(modifiedDocument);
+
+        } catch (RuntimeException e) {
+            // Handle the case when the document is not found or other error occurs
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping("/viaFile")
@@ -81,8 +102,5 @@ public class admincontroller {
 
         return ResponseEntity.ok("Users created successfully");
     }
-
-
-    
 
 }

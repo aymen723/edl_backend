@@ -1,9 +1,13 @@
 package com.example.edl_backend.Models;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "affectation")
 public class affectationmodel {
+
+    @Id
+    private String id;
 
     private specialitemodel specialite;
 
@@ -11,13 +15,14 @@ public class affectationmodel {
 
     private modulemodel module;
 
-    public affectationmodel(specialitemodel specialite, usermodel ens, modulemodel module) {
-        this.specialite = specialite;
-        this.ens = ens;
-        this.module = module;
+    private examenmodel examen;
+
+    public String getId() {
+        return id;
     }
 
-    public affectationmodel() {
+    public void setId(String id) {
+        this.id = id;
     }
 
     public specialitemodel getSpecialite() {
@@ -42,6 +47,26 @@ public class affectationmodel {
 
     public void setModule(modulemodel module) {
         this.module = module;
+    }
+
+    public examenmodel getExamen() {
+        return examen;
+    }
+
+    public void setExamen(examenmodel examen) {
+        this.examen = examen;
+    }
+
+    public affectationmodel(String id, specialitemodel specialite, usermodel ens, modulemodel module,
+            examenmodel examen) {
+        this.id = id;
+        this.specialite = specialite;
+        this.ens = ens;
+        this.module = module;
+        this.examen = examen;
+    }
+
+    public affectationmodel() {
     }
 
 }

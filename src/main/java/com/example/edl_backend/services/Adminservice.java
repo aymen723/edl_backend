@@ -1,10 +1,12 @@
 package com.example.edl_backend.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.edl_backend.Models.modulemodel;
 import com.example.edl_backend.Models.usermodel;
 import com.example.edl_backend.Repo.UserRepo;
 
@@ -29,8 +31,8 @@ public class Adminservice {
 
     }
 
-    public void updateuser(String userId, usermodel updatedUser) {
-        usermodel existingUser = userrepo.findById(userId).orElseThrow(IllegalArgumentException::new);
+    public usermodel updateuser(String userId, usermodel updatedUser) {
+        usermodel existingUser = userrepo.findById(userId).orElseThrow(null);
 
         if (existingUser != null) {
             // Update the fields you want to modify
@@ -44,13 +46,18 @@ public class Adminservice {
             existingUser.setPhone(updatedUser.getFname());
             existingUser.setBirthdate(updatedUser.getBirthdate());
             existingUser.setSpecialite(updatedUser.getSpecialite());
-            existingUser.setExaman(updatedUser.getExaman());
             existingUser.setNbr_copies(updatedUser.getNbr_copies());
+            existingUser.setCode(updatedUser.getCode());
+            existingUser.setState(updatedUser.isState());
 
-            // Update more fields as required
-
-            userrepo.save(existingUser);
+            return userrepo.save(existingUser);
+        } else {
+            throw new RuntimeException("Document not found");
         }
     }
 
+    public Optional<usermodel> findbyid(String id) {
+
+        return userrepo.findById(id);
+    }
 }

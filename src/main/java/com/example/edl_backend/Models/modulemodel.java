@@ -6,17 +6,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "module")
-
 public class modulemodel {
 
     @Id
-    private String Id;
+    private String id;
+
     private String nom_module;
     private Integer coeff;
     private Integer credit;
 
     public modulemodel(String id, String nom_module, Integer coeff, Integer credit) {
-        Id = id;
+        this.id = id;
         this.nom_module = nom_module;
         this.coeff = coeff;
         this.credit = credit;
@@ -26,11 +26,11 @@ public class modulemodel {
     }
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        id = id;
     }
 
     public String getNom_module() {

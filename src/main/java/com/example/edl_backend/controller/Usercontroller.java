@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,22 @@ public class Usercontroller {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    @PutMapping("/updateuser")
+    public ResponseEntity<usermodel> updateuser(@RequestParam String Id,
+            @RequestBody usermodel updatedDocument, HttpSession session) {
+        usermodel modifiedDocument = new usermodel();
+        try {
+            usermodel usersession = (usermodel) session.getAttribute("user");
+            modifiedDocument = userser.updateuser(Id, updatedDocument);
+
+            return ResponseEntity.ok(modifiedDocument);
+
+        } catch (RuntimeException e) {
+            // Handle the case when the document is not found or other error occurs
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
 }

@@ -12,22 +12,8 @@ import com.example.edl_backend.services.President_cfdservice;
 @RestController
 @RequestMapping("/Cfd")
 public class President_cfd_controller {
+
     @Autowired
     private President_cfdservice cfdservice;
-
-    @PostMapping("/addconcur")
-    public String addconcur(@RequestBody infoconcourmodel concur) {
-        try {
-            // usermodel usersession = (usermodel) session.getAttribute("user");
-
-            // if (usersession.getRole() == erole.ADMIN) {
-            cfdservice.addconcur(concur);
-            // }
-            return "user has been added";
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-        return null;
-    }
 
 }
